@@ -131,6 +131,19 @@
 
             label = "CLOSE_TAB";
         };
+
+        task_mngr: task_mngr {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_ALT &kp ESC>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND &kp LEFT_ALT &kp ESC>;
+
+            label = "TASK_MNGR";
+            wait-ms = <10>;
+        };
     };
 
     keymap {
@@ -142,7 +155,7 @@
 &kp TAB    &kp Q      &kp W             &kp E     &kp R      &kp T   &snippit                                                                          &close_tab      &kp Y   &kp U     &kp I         &kp O     &kp P     &kp BSLH
 &kp CAPS   &kp A      &kp S             &kp D     &kp F      &kp G   &nav_left 0 0  &kp LEFT_COMMAND  &kp LCTRL      &kp RIGHT_ALT  &kp RIGHT_COMMAND  &nav_right 0 0  &kp H   &kp J     &kp K         &kp L     &kp SEMI  &Quotes_Taps
 &kp LSHFT  &kp Z      &kp X             &kp C     &kp V      &kp B                                    &kp HOME       &kp PG_UP                                         &kp N   &kp M     &kp COMMA     &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp GRAVE  &kp LEFT_COMMAND  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL           &kp END        &kp PG_DN      &kp ENTER          &kp SPACE               &kp DOWN  &kp UP_ARROW  &kp LBKT  &kp RBKT  &mo 2
+&mo 2      &kp GRAVE  &kp LEFT_COMMAND  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL           &kp END        &kp PG_DN      &kp ENTER          &kp SPACE               &kp DOWN  &kp UP_ARROW  &kp LBKT  &kp RBKT  &task_mngr
             >;
         };
 
