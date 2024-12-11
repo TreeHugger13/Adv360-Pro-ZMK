@@ -36,6 +36,24 @@
             #binding-cells = <0>;
             bindings = <&kp SQT>, <&kp DOUBLE_QUOTES>;
         };
+
+        nav_left: nav_left {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NAV_LEFT";
+            bindings = <&scrn_left>, <&tab_left>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
+        nav_right: nav_right {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NAV_RIGHT";
+            bindings = <&scrn_right>, <&tab_right>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
     };
 
     macros {
@@ -77,6 +95,42 @@
             label = "SNIPPIT";
             wait-ms = <10>;
         };
+
+        scrn_left: scrn_left {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL &kp LEFT>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp LEFT>;
+
+            label = "SCRN_LEFT";
+        };
+
+        scrn_right: scrn_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL &kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL &kp RIGHT>;
+
+            label = "SCRN_RIGHT";
+        };
+
+        close_tab: close_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp W>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND &kp W>;
+
+            label = "CLOSE_TAB";
+        };
     };
 
     keymap {
@@ -84,11 +138,11 @@
 
         default_layer {
             bindings = <
-&tap_esc   &kp N1     &kp N2            &kp N3    &kp N4     &kp N5  &tog 1                                                                            &mo 3              &kp N6  &kp N7    &kp N8        &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W             &kp E     &kp R      &kp T   &snippit                                                                          &kp RIGHT_CONTROL  &kp Y   &kp U     &kp I         &kp O     &kp P     &kp BSLH
-&kp CAPS   &kp A      &kp S             &kp D     &kp F      &kp G   &tab_left      &kp LEFT_COMMAND  &kp LCTRL      &kp RIGHT_ALT  &kp RIGHT_COMMAND  &tab_right         &kp H   &kp J     &kp K         &kp L     &kp SEMI  &Quotes_Taps
-&kp LSHFT  &kp Z      &kp X             &kp C     &kp V      &kp B                                    &kp HOME       &kp PG_UP                                            &kp N   &kp M     &kp COMMA     &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp GRAVE  &kp LEFT_COMMAND  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL           &kp END        &kp PG_DN      &kp ENTER          &kp SPACE                  &kp DOWN  &kp UP_ARROW  &kp LBKT  &kp RBKT  &mo 2
+&tap_esc   &kp N1     &kp N2            &kp N3    &kp N4     &kp N5  &tog 1                                                                            &mo 3           &kp N6  &kp N7    &kp N8        &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q      &kp W             &kp E     &kp R      &kp T   &snippit                                                                          &close_tab      &kp Y   &kp U     &kp I         &kp O     &kp P     &kp BSLH
+&kp CAPS   &kp A      &kp S             &kp D     &kp F      &kp G   &nav_left 0 0  &kp LEFT_COMMAND  &kp LCTRL      &kp RIGHT_ALT  &kp RIGHT_COMMAND  &nav_right 0 0  &kp H   &kp J     &kp K         &kp L     &kp SEMI  &Quotes_Taps
+&kp LSHFT  &kp Z      &kp X             &kp C     &kp V      &kp B                                    &kp HOME       &kp PG_UP                                         &kp N   &kp M     &kp COMMA     &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2      &kp GRAVE  &kp LEFT_COMMAND  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL           &kp END        &kp PG_DN      &kp ENTER          &kp SPACE               &kp DOWN  &kp UP_ARROW  &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
@@ -104,11 +158,11 @@
 
         fn {
             bindings = <
-&none   &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &tog 1                                      &mo 3   &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans  &none                                       &none   &trans  &trans  &trans  &trans  &trans   &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans  &trans  &trans  &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans  &trans   &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans  &trans   &trans
+&none   &kp F1  &kp F2  &kp F3                &kp F4                &kp F5  &tog 1                                      &mo 3   &kp F6  &kp F7             &kp F8           &kp F9  &kp F10  &kp F11
+&trans  &trans  &trans  &trans                &trans                &trans  &none                                       &none   &trans  &trans             &trans           &trans  &trans   &kp F12
+&trans  &trans  &trans  &trans                &trans                &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans             &trans           &trans  &trans   &trans
+&trans  &trans  &trans  &trans                &trans                &trans                  &trans      &trans                  &trans  &trans             &trans           &trans  &trans   &trans
+&trans  &trans  &trans  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC          &trans  &trans  &trans      &trans  &trans  &trans          &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &trans  &trans   &trans
             >;
         };
 
