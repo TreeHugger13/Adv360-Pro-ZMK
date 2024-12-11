@@ -69,42 +69,52 @@
         tab_left: tab_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_COMMAND &kp LEFT_ALT &kp LEFT>;
+            bindings = <&macro_press>, <&kp LEFT_COMMAND &kp LEFT_ALT &kp LEFT>;
+
             label = "TAB_LEFT";
         };
 
         tab_right: tab_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RIGHT_COMMAND &kp RIGHT_ALT &kp RIGHT>;
+            bindings =
+                <&macro_press>,
+                <&kp RIGHT_COMMAND &kp RIGHT_ALT &kp RIGHT>;
+
             label = "TAB_RIGHT";
         };
 
         snippit: snippit {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp NUMBER_4>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp NUMBER_4>;
+
             label = "SNIPPIT";
         };
 
         mission_left: mission_left {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp LEFT>;
+            bindings = <&macro_press>, <&kp LEFT_CONTROL &kp LEFT>;
+
             label = "MISSION_LEFT";
         };
 
         mission_right: mission_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL &kp RIGHT>;
+            bindings = <&macro_press>, <&kp RCTRL &kp RIGHT>;
+
             label = "MISSION_RIGHT";
         };
 
         mission_control: mission_control {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LCTRL &kp UP_ARROW>;
+            bindings = <&macro_press>, <&kp LCTRL &kp UP_ARROW>;
+
             label = "MISSION_CONTROL";
         };
     };
